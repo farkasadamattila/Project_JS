@@ -1,0 +1,8 @@
+.fa.fa-star.checked {
+  color: var(--bs-purple);
+}
+
+.comment-btn {
+  background-color: var(--bs-purple);
+}
+
