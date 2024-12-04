@@ -1,8 +1,7 @@
-/* General styles */
 body {
-    background-color: #292c2f; /* Dark background */
-    color: white; /* Text color */
-    font-family: 'Press Start 2P', sans-serif; /* Retro font */
+    background-color: #292c2f;
+    color: white;
+    font-family: 'Press Start 2P', sans-serif; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,7 +15,7 @@ body {
 }
 
 #gameCanvas {
-    border: 3px solid #444; /* Border for the canvas */
+    border: 3px solid #444; 
     margin-bottom: 20px;
 }
 
@@ -28,7 +27,7 @@ body {
 #resetButton {
     font-size: 16px;
     padding: 10px 20px;
-    background-color: #1db954; /* Bright green */
+    background-color: #1db954; 
     border: none;
     color: white;
     border-radius: 10px;
@@ -37,10 +36,9 @@ body {
 }
 
 #resetButton:hover {
-    background-color: #17a74b; /* Darker green on hover */
+    background-color: #17a74b; 
 }
 
-/* Footer styles */
 #footer {
     margin-top: 20px;
     font-size: 14px;

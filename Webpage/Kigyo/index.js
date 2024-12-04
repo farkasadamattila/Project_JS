@@ -1,11 +1,9 @@
-// --- Selecting HTML Elements ---
 const gameCanvas = document.querySelector("#gameCanvas");
 const ctx = gameCanvas.getContext("2d");
 const scoreDisplay = document.querySelector("#scoreDisplay");
 const resetButton = document.querySelector("#resetButton");
 const highScoreDisplay = document.querySelector("#highScoreDisplay");
 
-// --- Game Constants ---
 const canvasWidth = gameCanvas.width;
 const canvasHeight = gameCanvas.height;
 const backgroundColor = "#1e1e1e";
@@ -14,7 +12,6 @@ const snakeBorderColor = "#111";
 const foodColor = "#ff3e3e";
 const unitSize = 25;
 
-// --- Game Variables ---
 let gameRunning = false;
 let xVelocity = unitSize;
 let yVelocity = 0;
@@ -30,11 +27,9 @@ let snake = [
     { x: 0, y: 0 }
 ];
 
-// --- Event Listeners ---
-window.addEventListener("keydown", changeDirection); // Keyboard controls
+window.addEventListener("keydown", changeDirection);
 resetButton.addEventListener("click", resetGame);
 
-// Touch controls
 let touchStartX = 0;
 let touchStartY = 0;
 let touchEndX = 0;
@@ -171,18 +166,18 @@ function handleSwipe() {
     if (Math.abs(deltaX) > Math.abs(deltaY)) {
         if (deltaX > 0 && !goingLeft) {
             xVelocity = unitSize;
-            yVelocity = 0; // Swipe right
+            yVelocity = 0;
         } else if (deltaX < 0 && !goingRight) {
             xVelocity = -unitSize;
-            yVelocity = 0; // Swipe left
+            yVelocity = 0;
         }
     } else {
         if (deltaY > 0 && !goingUp) {
             xVelocity = 0;
-            yVelocity = unitSize; // Swipe down
+            yVelocity = unitSize;
         } else if (deltaY < 0 && !goingDown) {
             xVelocity = 0;
-            yVelocity = -unitSize; // Swipe up
+            yVelocity = -unitSize;
         }
     }
 }
