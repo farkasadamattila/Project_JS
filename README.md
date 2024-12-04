@@ -2,5 +2,16 @@
 
 Készítette: Farkas Ádám Attila, Makkos Péter, Bólya Soma.
 
-Ez egy olyan weboldal lessz, amin 5 különböző játékot lehet játszani: Wordle, Snake, Rock-Paper-Scissor, Hangman és Tetris.
+Makkos Péter:
+        - Wordle
+        -
+Bólya Soma:
+        - Draw.io
+        -
+Farkas Ádám Attila:
+        - Homepage
+        -
+
+
+Ez egy olyan weboldal, amin 5 különböző játékot lehet játszani: Wordle, Snake, Rock-Paper-Scissor, Hangman és Tetris.
 
