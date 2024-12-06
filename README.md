@@ -1,13 +1,14 @@
- ________   ______  
-|        \ /      \ 
- \$$$$$$$$|  $$$$$$\
-    /  $$ | $$__/ $$
-   /  $$   \$$    $$
-  /  $$    _\$$$$$$$
- /  $$___ |  \__/ $$
-|  $$    \ \$$    $$
- \$$$$$$$$  \$$$$$$ 
-
+```
+__/\\\\\\\\\\\\\\\______/\\\\\\\\\____        
+ _\////////////\\\_____/\\\///////\\\__       
+  ___________/\\\/_____/\\\______\//\\\_      
+   _________/\\\/______\//\\\_____/\\\\\_     
+    _______/\\\/_________\///\\\\\\\\/\\\_    
+     _____/\\\/_____________\////////\/\\\_   
+      ___/\\\/_____________/\\________/\\\__  
+       __/\\\\\\\\\\\\\\\__\//\\\\\\\\\\\/___ 
+        _\///////////////____\///////////_____
+```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Ez a projekt egy weboldal, amelyen 5 különböző játékot lehet játszani: Wordle, Snake, Rock-Paper-Scissor, Hangman és Tetris. A játékok célja a szórakoztatás és a logikai készségek fejlesztése. A játékok mindegyike különböző kihívásokat és szórakozási lehetőségeket kínál, így mindenki megtalálhatja a számára legérdekesebb játékot. A projekt célja, hogy egy könnyen használható és élvezetes platformot biztosítson a felhasználók számára, ahol kipróbálhatják és fejleszthetik logikai és stratégiai készségeiket.
