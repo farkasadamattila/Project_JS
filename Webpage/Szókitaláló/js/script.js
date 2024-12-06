@@ -1,20 +1,20 @@
 const wordText = document.querySelector(".word"),
-hintText = document.querySelector(".hint span"),
-timeText = document.querySelector(".time b"),
-inputField = document.querySelector("input"),
-refreshBtn = document.querySelector(".refresh-word"),
-checkBtn = document.querySelector(".check-word");
+    hintText = document.querySelector(".hint span"),
+    timeText = document.querySelector(".time b"),
+    inputField = document.querySelector("input"),
+    refreshBtn = document.querySelector(".refresh-word"),
+    checkBtn = document.querySelector(".check-word");
 
 let correctWord, timer;
 
 const initTimer = maxTime => {
     clearInterval(timer);
     timer = setInterval(() => {
-        if(maxTime > 0) {
+        if (maxTime > 0) {
             maxTime--;
             return timeText.innerText = maxTime;
         }
-        alert(`Time off! ${correctWord.toUpperCase()} was the correct word`);
+        timeText.innerText = `Time off! ${correctWord.toUpperCase()} was the correct word`;
         initGame();
     }, 1000);
 }
@@ -34,12 +34,17 @@ const initGame = () => {
     inputField.setAttribute("maxlength", correctWord.length);
 }
 initGame();
-
 const checkWord = () => {
     let userWord = inputField.value.toLowerCase();
-    if(!userWord) return alert("Please enter the word to check!");
-    if(userWord !== correctWord) return alert(`Oops! ${userWord} is not a correct word`);
-    alert(`Congrats! ${correctWord.toUpperCase()} is the correct word`);
+    if (!userWord) {
+        timeText.innerText = "Please enter the word to check!";
+        return;
+    }
+    if (userWord !== correctWord) {
+        timeText.innerText = `Oops! ${userWord} is not a correct word`;
+        return;
+    }
+    timeText.innerText = `Congrats! ${correctWord.toUpperCase()} is the correct word`;
     initGame();
 }
 
