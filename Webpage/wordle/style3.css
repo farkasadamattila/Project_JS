@@ -19,6 +19,7 @@ h1 {
 .game-container {
     text-align: center;
     padding: 20px;
+    /* background-color: #2d2e31; */
     background-color: #2d2e31;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
