@@ -13,3 +13,16 @@ body {
 canvas {
   border: 1px solid white;
 }
+
+.new-game-button {
+  padding: 10px 20px;
+  margin: 20px 0;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #6aaa64;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}

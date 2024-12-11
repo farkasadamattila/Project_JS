@@ -1,4 +1,3 @@
-
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -39,7 +38,7 @@ function getNextTetromino() {
 function rotate(matrix) {
     const N = matrix.length - 1;
     const result = matrix.map((row, i) =>
-        row.map((val, j) => matrix[N - j][i])
+        row.map((_, j) => matrix[N - j][i])
     );
 
     return result;
@@ -217,8 +216,8 @@ function loop() {
 document.addEventListener('keydown', function (e) {
     if (gameOver) return;
 
-    if (e.which === 37 || e.which === 39) {
-        const col = e.which === 37
+    if (e.keyCode === 68 || e.keyCode === 65) {
+        const col = e.keyCode === 65
             ? tetromino.col - 1
             : tetromino.col + 1;
 
@@ -227,14 +226,14 @@ document.addEventListener('keydown', function (e) {
         }
     }
 
-    if (e.which === 38) {
+    if (e.keyCode === 87) {
         const matrix = rotate(tetromino.matrix);
         if (isValidMove(matrix, tetromino.row, tetromino.col)) {
             tetromino.matrix = matrix;
         }
     }
 
-    if (e.which === 40) {
+    if (e.keyCode === 83) {
         const row = tetromino.row + 1;
 
         if (!isValidMove(tetromino.matrix, row, tetromino.col)) {
@@ -249,3 +248,8 @@ document.addEventListener('keydown', function (e) {
 });
 
 rAF = requestAnimationFrame(loop);
+
+
+document.getElementById('new-game-button').addEventListener('click', function() {
+    location.reload();
+});
