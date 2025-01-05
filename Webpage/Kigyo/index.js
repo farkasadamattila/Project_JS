@@ -1,9 +1,13 @@
+// Kiválasztja a játék vásznát és beállítja a 2D kontextust
 const gameCanvas = document.querySelector("#gameCanvas");
 const ctx = gameCanvas.getContext("2d");
+
+// Kiválasztja a pontszám kijelzőt és a reset gombot
 const scoreDisplay = document.querySelector("#scoreDisplay");
 const resetButton = document.querySelector("#resetButton");
 const highScoreDisplay = document.querySelector("#highScoreDisplay");
 
+// Vászon méretek és színek beállítása
 const canvasWidth = gameCanvas.width;
 const canvasHeight = gameCanvas.height;
 const backgroundColor = "#1e1e1e";
@@ -12,6 +16,7 @@ const snakeBorderColor = "#111";
 const foodColor = "#ff3e3e";
 const unitSize = 25;
 
+// Játék állapot és kezdeti értékek beállítása
 let gameRunning = false;
 let xVelocity = unitSize;
 let yVelocity = 0;
@@ -27,9 +32,11 @@ let snake = [
     { x: 0, y: 0 }
 ];
 
+// Eseményfigyelők hozzáadása a billentyűzethez és a reset gombhoz
 window.addEventListener("keydown", changeDirection);
 resetButton.addEventListener("click", resetGame);
 
+// Érintéses események kezelése
 let touchStartX = 0;
 let touchStartY = 0;
 let touchEndX = 0;
@@ -48,6 +55,7 @@ gameCanvas.addEventListener("touchend", (e) => {
     handleSwipe();
 });
 
+// Játék indítása
 startGame();
 
 function startGame() {
@@ -60,6 +68,7 @@ function startGame() {
     gameLoop();
 }
 
+// Játék ciklus
 function gameLoop() {
     if (gameRunning) {
         setTimeout(() => {
@@ -75,11 +84,13 @@ function gameLoop() {
     }
 }
 
+// Vászon törlése
 function clearCanvas() {
     ctx.fillStyle = backgroundColor;
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 }
 
+// Étel létrehozása véletlenszerű koordinátákon
 function createFood() {
     function randomCoordinate(min, max) {
         return Math.floor((Math.random() * (max - min) + min) / unitSize) * unitSize;
@@ -88,11 +99,13 @@ function createFood() {
     foodY = randomCoordinate(0, canvasHeight - unitSize);
 }
 
+// Étel kirajzolása
 function drawFood() {
     ctx.fillStyle = foodColor;
     ctx.fillRect(foodX, foodY, unitSize, unitSize);
 }
 
+// Kígyó mozgatása
 function moveSnake() {
     const head = { x: snake[0].x + xVelocity, y: snake[0].y + yVelocity };
     snake.unshift(head);
@@ -111,6 +124,7 @@ function moveSnake() {
     }
 }
 
+// Kígyó kirajzolása
 function drawSnake() {
     snake.forEach(segment => {
         ctx.fillStyle = snakeBodyColor;
@@ -120,6 +134,7 @@ function drawSnake() {
     });
 }
 
+// Irányváltás kezelése billentyűzeten
 function changeDirection(event) {
     const keyPressed = event.key.toLowerCase();
 
@@ -154,6 +169,7 @@ function changeDirection(event) {
     }
 }
 
+// Érintéses irányváltás kezelése
 function handleSwipe() {
     const deltaX = touchEndX - touchStartX;
     const deltaY = touchEndY - touchStartY;
@@ -182,6 +198,7 @@ function handleSwipe() {
     }
 }
 
+// Játék vége ellenőrzése
 function checkGameOver() {
     if (
         snake[0].x < 0 ||
@@ -199,6 +216,7 @@ function checkGameOver() {
     });
 }
 
+// Játék vége kijelzése
 function showGameOver() {
     ctx.fillStyle = "white";
     ctx.font = "40px 'Press Start 2P', sans-serif";
@@ -207,6 +225,7 @@ function showGameOver() {
     ctx.fillText(`Score: ${score}`, canvasWidth / 2, canvasHeight / 2 + 40);
 }
 
+// Játék újraindítása
 function resetGame() {
     gameRunning = true;
     score = 0;

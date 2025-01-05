@@ -13,30 +13,32 @@ const WORDS = ["apple", "brave", "cherry", "dance", "eagle", "field", "grape", "
     "trust", "unbox", "vapor", "weave", "xenon", "yield", "zebra", "alarm", "brave", 
     "crisp", "diver", "earth", "flora", "grasp", "honor", "ivory", "jewel", "kneel", 
     "liver", "medal", "noble", "orbit"];
-let targetWord;
-let currentRow;
-let currentCol;
-let guess;
+let targetWord; // A kitalálandó szó
+let currentRow; // Jelenlegi sor a játéktáblán
+let currentCol; // Jelenlegi oszlop a játéktáblán
+let guess; // Jelenlegi tipp
 
-const board = document.getElementById("board");
-const keyboard = document.querySelector(".keyboard");
-const newGameButton = document.getElementById("new-game-button");
+const board = document.getElementById("board"); // Játéktábla elem
+const keyboard = document.querySelector(".keyboard"); // Képernyőn megjelenő billentyűzet elem
+const newGameButton = document.getElementById("new-game-button"); // Új játék gomb elem
 
 function initializeGame() {
-    document.getElementById("board").focus();
-    board.innerHTML = "";
-    clearKeyboardColors();
-    targetWord = WORDS[Math.floor(Math.random() * WORDS.length)].toUpperCase();
-    currentRow = 0;
-    currentCol = 0;
-    guess = "";
+    document.getElementById("board").focus(); // Fókusz a játéktáblán
+    board.innerHTML = ""; // Játéktábla törlése
+    clearKeyboardColors(); // Billentyűzet színeinek törlése
+    targetWord = WORDS[Math.floor(Math.random() * WORDS.length)].toUpperCase(); // Véletlenszerű cél szó kiválasztása
+    currentRow = 0; // Jelenlegi sor visszaállítása
+    currentCol = 0; // Jelenlegi oszlop visszaállítása
+    guess = ""; // Jelenlegi tipp visszaállítása
 
+    // Csempék létrehozása a játéktáblán
     for (let i = 0; i < 6 * 5; i++) {
         const tile = document.createElement("div");
         tile.className = "tile";
         board.appendChild(tile);
     }
 
+    // Eseménykezelők hozzáadása a billentyűzet beviteléhez
     document.addEventListener("keydown", handlePhysicalKeyboard);
     keyboard.addEventListener("click", handleOnScreenKeyboard);
 }
@@ -44,11 +46,11 @@ function initializeGame() {
 function handlePhysicalKeyboard(e) {
     const key = e.key.toUpperCase();
     if (key === "BACKSPACE") {
-        removeLetter();
+        removeLetter(); // Backspace billentyű kezelése
     } else if (key === "ENTER") {
-        submitGuess();
+        submitGuess(); // Enter billentyű kezelése
     } else if (/^[A-Z]$/.test(key)) {
-        addLetter(key);
+        addLetter(key); // Betű billentyűk kezelése
     }
 }
 
@@ -57,57 +59,59 @@ function handleOnScreenKeyboard(e) {
     if (!key) return;
 
     if (key === "Backspace") {
-        removeLetter();
+        removeLetter(); // Backspace billentyű kezelése
     } else if (key === "Enter") {
-        submitGuess();
+        submitGuess(); // Enter billentyű kezelése
     } else if (/^[A-Z]$/.test(key)) {
-        addLetter(key);
+        addLetter(key); // Betű billentyűk kezelése
     }
 }
 
 function addLetter(letter) {
     if (currentCol < 5) {
         const tiles = board.querySelectorAll(".tile");
-        tiles[currentRow * 5 + currentCol].textContent = letter;
-        currentCol++;
-        guess += letter;
+        tiles[currentRow * 5 + currentCol].textContent = letter; // Betű hozzáadása az aktuális csempéhez
+        currentCol++; // Következő oszlopra lépés
+        guess += letter; // Betű hozzáadása az aktuális tipphez
     }
 }
 
 function removeLetter() {
     if (currentCol > 0) {
         const tiles = board.querySelectorAll(".tile");
-        currentCol--;
-        guess = guess.slice(0, -1);
-        tiles[currentRow * 5 + currentCol].textContent = "";
+        currentCol--; // Előző oszlopra lépés
+        guess = guess.slice(0, -1); // Utolsó betű eltávolítása a tippből
+        tiles[currentRow * 5 + currentCol].textContent = ""; // Aktuális csempe törlése
     }
 }
 
 function submitGuess() {
     if (guess.length !== 5) {
-        alert("Not enough letters!");
+        alert("Nem elég betű!"); // Figyelmeztetés, ha a tipp nem teljes
         return;
     }
 
     const tiles = board.querySelectorAll(".tile");
     const guessedLetters = {};
 
+    // Minden betű ellenőrzése a tippben
     for (let i = 0; i < 5; i++) {
         const tile = tiles[currentRow * 5 + i];
         const letter = guess[i];
 
         if (targetWord[i] === letter) {
-            tile.classList.add("correct");
-            updateKeyboard(letter, "correct");
+            tile.classList.add("correct"); // Betű megjelölése helyesként
+            updateKeyboard(letter, "correct"); // Billentyűzet színének frissítése
         } else if (targetWord.includes(letter)) {
-            tile.classList.add("present");
+            tile.classList.add("present"); // Betű megjelölése jelenlévőként
             guessedLetters[letter] = "present";
         } else {
-            tile.classList.add("absent");
-            updateKeyboard(letter, "absent");
+            tile.classList.add("absent"); // Betű megjelölése hiányzóként
+            updateKeyboard(letter, "absent"); // Billentyűzet színének frissítése
         }
     }
 
+    // Billentyűzet frissítése a jelenlévő betűk esetén
     for (const [letter, status] of Object.entries(guessedLetters)) {
         if (!targetWord.split("").filter((l) => l === letter).length) {
             updateKeyboard(letter, "present");
@@ -115,20 +119,20 @@ function submitGuess() {
     }
 
     if (guess === targetWord) {
-        setTimeout(() => alert("You win!"), 100);
-        endGame();
+        setTimeout(() => alert("Nyertél!"), 100); // Figyelmeztetés, ha a tipp helyes
+        endGame(); // Játék befejezése
         return;
     }
 
     if (currentRow === 5) {
-        setTimeout(() => alert(`Game over! The word was ${targetWord}`), 100);
-        endGame();
+        setTimeout(() => alert(`Játék vége! A szó ${targetWord} volt`), 100); // Figyelmeztetés, ha a játék véget ért
+        endGame(); // Játék befejezése
         return;
     }
 
-    currentRow++;
-    currentCol = 0;
-    guess = "";
+    currentRow++; // Következő sorra lépés
+    currentCol = 0; // Oszlop visszaállítása
+    guess = ""; // Tipp visszaállítása
 }
 
 function updateKeyboard(letter, status) {
@@ -137,26 +141,26 @@ function updateKeyboard(letter, status) {
 
     if (status === "correct") {
         keyButton.classList.remove("present", "absent");
-        keyButton.classList.add("correct");
+        keyButton.classList.add("correct"); // Billentyű megjelölése helyesként
     } else if (status === "present" && !keyButton.classList.contains("correct")) {
         keyButton.classList.remove("absent");
-        keyButton.classList.add("present");
+        keyButton.classList.add("present"); // Billentyű megjelölése jelenlévőként
     } else if (!keyButton.classList.contains("correct") && !keyButton.classList.contains("present")) {
-        keyButton.classList.add("absent");
+        keyButton.classList.add("absent"); // Billentyű megjelölése hiányzóként
     }
 }
 
 function clearKeyboardColors() {
     const keys = keyboard.querySelectorAll("button");
     keys.forEach((key) => {
-        key.classList.remove("correct", "present", "absent");
+        key.classList.remove("correct", "present", "absent"); // Minden billentyű színének törlése
     });
 }
 
 function endGame() {
-    document.removeEventListener("keydown", handlePhysicalKeyboard);
-    keyboard.removeEventListener("click", handleOnScreenKeyboard);
+    document.removeEventListener("keydown", handlePhysicalKeyboard); // Billentyűzet eseménykezelő eltávolítása
+    keyboard.removeEventListener("click", handleOnScreenKeyboard); // Képernyőn megjelenő billentyűzet eseménykezelő eltávolítása
 }
 
-newGameButton.addEventListener("click", initializeGame);
-initializeGame();
+newGameButton.addEventListener("click", initializeGame); // Eseménykezelő hozzáadása az új játék gombhoz
+initializeGame(); // Játék inicializálása az oldal betöltésekor

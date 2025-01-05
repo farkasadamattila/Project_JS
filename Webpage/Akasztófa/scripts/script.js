@@ -1,16 +1,16 @@
-const wordDisplay = document.querySelector(".word-display");
-const guessesText = document.querySelector(".guesses-text b");
-const keyboardDiv = document.querySelector(".keyboard");
-const hangmanImage = document.querySelector(".hangman-box img");
-const gameModal = document.querySelector(".game-modal");
-const playAgainBtn = gameModal.querySelector("button");
+const wordDisplay = document.querySelector(".word-display"); // Kiválasztja a szó megjelenítő elemet
+const guessesText = document.querySelector(".guesses-text b"); // Kiválasztja a találgatások szövegét
+const keyboardDiv = document.querySelector(".keyboard"); // Kiválasztja a billentyűzet div-et
+const hangmanImage = document.querySelector(".hangman-box img"); // Kiválasztja az akasztófa képet
+const gameModal = document.querySelector(".game-modal"); // Kiválasztja a játék modált
+const playAgainBtn = gameModal.querySelector("button"); // Kiválasztja az újra játszás gombot a modálban
 
-// Initializing game variables
+// Játék változók inicializálása
 let currentWord, correctLetters, wrongGuessCount;
 const maxGuesses = 6;
 
 const resetGame = () => {
-    // Ressetting game variables and UI elements
+    // Játék változók és UI elemek visszaállítása
     correctLetters = [];
     wrongGuessCount = 0;
     hangmanImage.src = "images/hangman-0.svg";
@@ -21,15 +21,15 @@ const resetGame = () => {
 }
 
 const getRandomWord = () => {
-    // Selecting a random word and hint from the wordList
+    // Véletlenszerű szó és tipp kiválasztása a wordList-ből
     const { word, hint } = wordList[Math.floor(Math.random() * wordList.length)];
-    currentWord = word; // Making currentWord as random word
+    currentWord = word; // Az aktuális szó beállítása véletlenszerű szóra
     document.querySelector(".hint-text b").innerText = hint;
     resetGame();
 }
 
 const gameOver = (isVictory) => {
-    // After game complete.. showing modal with relevant details
+    // Játék vége után a modál megjelenítése releváns részletekkel
     const modalText = isVictory ? `You found the word:` : 'The correct word was:';
     gameModal.querySelector("img").src = `images/${isVictory ? 'victory' : 'lost'}.gif`;
     gameModal.querySelector("h4").innerText = isVictory ? 'Congrats!' : 'Game Over!';
@@ -38,9 +38,9 @@ const gameOver = (isVictory) => {
 }
 
 const initGame = (button, clickedLetter) => {
-    // Checking if clickedLetter is exist on the currentWord
+    // Ellenőrzi, hogy a kattintott betű létezik-e az aktuális szóban
     if(currentWord.includes(clickedLetter)) {
-        // Showing all correct letters on the word display
+        // Az összes helyes betű megjelenítése a szó megjelenítőn
         [...currentWord].forEach((letter, index) => {
             if(letter === clickedLetter) {
                 correctLetters.push(letter);
@@ -49,19 +49,19 @@ const initGame = (button, clickedLetter) => {
             }
         });
     } else {
-        // If clicked letter doesn't exist then update the wrongGuessCount and hangman image
+        // Ha a kattintott betű nem létezik, frissíti a hibás találgatások számát és az akasztófa képet
         wrongGuessCount++;
         hangmanImage.src = `images/hangman-${wrongGuessCount}.svg`;
     }
-    button.disabled = true; // Disabling the clicked button so user can't click again
+    button.disabled = true; // A kattintott gomb letiltása, hogy a felhasználó ne kattinthasson újra
     guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`;
 
-    // Calling gameOver function if any of these condition meets
+    // A gameOver függvény hívása, ha bármelyik feltétel teljesül
     if(wrongGuessCount === maxGuesses) return gameOver(false);
     if(correctLetters.length === currentWord.length) return gameOver(true);
 }
 
-// Creating keyboard buttons and adding event listeners
+// Billentyűzet gombok létrehozása és eseményfigyelők hozzáadása
 for (let i = 97; i <= 122; i++) {
     const button = document.createElement("button");
     button.innerText = String.fromCharCode(i);
