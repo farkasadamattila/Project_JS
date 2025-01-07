@@ -1,95 +1,94 @@
-// Szavak tömbje, amely szavakat és azokhoz tartozó tippeket tartalmaz
 let words = [
     {
-        word: "addition", // Szó: összeadás
-        hint: "The process of adding numbers" // Tipp: A számok összeadásának folyamata
+        word: "addition",
+        hint: "The process of adding numbers"
     },
     {
-        word: "meeting", // Szó: találkozó
-        hint: "Event in which people come together" // Tipp: Esemény, ahol emberek összegyűlnek
+        word: "meeting",
+        hint: "Event in which people come together"
     },
     {
-        word: "number", // Szó: szám
-        hint: "Math symbol used for counting" // Tipp: Számolásra használt matematikai szimbólum
+        word: "number",
+        hint: "Math symbol used for counting"
     },
     {
-        word: "exchange", // Szó: csere
-        hint: "The act of trading" // Tipp: A kereskedés cselekedete
+        word: "exchange",
+        hint: "The act of trading"
     },
     {
-        word: "canvas", // Szó: vászon
-        hint: "Piece of fabric for oil painting" // Tipp: Olajfestéshez használt szövetdarab
+        word: "canvas",
+        hint: "Piece of fabric for oil painting"
     },
     {
-        word: "garden", // Szó: kert
-        hint: "Space for planting flower and plant" // Tipp: Virágok és növények ültetésére szolgáló terület
+        word: "garden",
+        hint: "Space for planting flower and plant"
     },
     {
-        word: "position", // Szó: pozíció
-        hint: "Location of someone or something" // Tipp: Valaki vagy valami helyzete
+        word: "position",
+        hint: "Location of someone or something"
     },
     {
-        word: "feather", // Szó: toll
-        hint: "Hair like outer covering of bird" // Tipp: Madár hajhoz hasonló külső borítása
+        word: "feather",
+        hint: "Hair like outer covering of bird"
     },
     {
-        word: "comfort", // Szó: kényelem
-        hint: "A pleasant feeling of relaxation" // Tipp: Kellemes pihenés érzése
+        word: "comfort",
+        hint: "A pleasant feeling of relaxation"
     },
     {
-        word: "tongue", // Szó: nyelv
-        hint: "The muscular organ of mouth" // Tipp: A száj izmos szerve
+        word: "tongue",
+        hint: "The muscular organ of mouth"
     },
     {
-        word: "expansion", // Szó: terjeszkedés
-        hint: "The process of increase or grow" // Tipp: A növekedés vagy bővülés folyamata
+        word: "expansion",
+        hint: "The process of increase or grow"
     },
     {
-        word: "country", // Szó: ország
-        hint: "A politically identified region" // Tipp: Politikai azonosított régió
+        word: "country",
+        hint: "A politically identified region"
     },
     {
-        word: "group", // Szó: csoport
-        hint: "A number of objects or persons" // Tipp: Tárgyak vagy személyek száma
+        word: "group",
+        hint: "A number of objects or persons"
     },
     {
-        word: "taste", // Szó: íz
-        hint: "Ability of tongue to detect flavour" // Tipp: A nyelv képessége az íz érzékelésére
+        word: "taste",
+        hint: "Ability of tongue to detect flavour"
     },
     {
-        word: "store", // Szó: bolt
-        hint: "Large shop where goods are traded" // Tipp: Nagy üzlet, ahol árukat cserélnek
+        word: "store",
+        hint: "Large shop where goods are traded"
     },
     {
-        word: "field", // Szó: mező
-        hint: "Area of land for farming activities" // Tipp: Mezőgazdasági tevékenységekre szolgáló terület
+        word: "field",
+        hint: "Area of land for farming activities"
     },
     {
-        word: "friend", // Szó: barát
-        hint: "Person other than a family member" // Tipp: Családtagon kívüli személy
+        word: "friend",
+        hint: "Person other than a family member"
     },
     {
-        word: "pocket", // Szó: zseb
-        hint: "A bag for carrying small items" // Tipp: Kis tárgyak hordozására szolgáló táska
+        word: "pocket",
+        hint: "A bag for carrying small items"
     },
     {
-        word: "needle", // Szó: tű
-        hint: "A thin and sharp metal pin" // Tipp: Vékony és éles fém tű
+        word: "needle",
+        hint: "A thin and sharp metal pin"
     },
     {
-        word: "expert", // Szó: szakértő
-        hint: "Person with extensive knowledge" // Tipp: Személy, aki széleskörű ismeretekkel rendelkezik
+        word: "expert",
+        hint: "Person with extensive knowledge"
     },
     {
-        word: "statement", // Szó: kijelentés
-        hint: "A declaration of something" // Tipp: Valaminek a kijelentése
+        word: "statement",
+        hint: "A declaration of something"
     },
     {
-        word: "second", // Szó: másodperc
-        hint: "One-sixtieth of a minute" // Tipp: Egy perc hatvanad része
+        word: "second",
+        hint: "One-sixtieth of a minute"
     },
     {
-        word: "library", // Szó: könyvtár
-        hint: "Place containing collection of books" // Tipp: Könyvgyűjteményt tartalmazó hely
+        word: "library",
+        hint: "Place containing collection of books"
     },
 ]

@@ -1,11 +1,11 @@
-// Véletlenszerű egész számot ad vissza a megadott tartományban
+// Returns a random integer between the specified min and max values
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// Generál egy véletlenszerű sorrendet a tetrominókhoz
+// Generates a random sequence of tetromino pieces
 function generateSequence() {
     const sequence = ['I', 'J', 'L', 'O', 'S', 'T', 'Z'];
     while (sequence.length) {
@@ -15,7 +15,7 @@ function generateSequence() {
     }
 }
 
-// Visszaadja a következő tetrominót a sorozatból
+// Returns the next tetromino piece from the sequence
 function getNextTetromino() {
     if (tetrominoSequence.length === 0) {
         generateSequence();
@@ -32,7 +32,7 @@ function getNextTetromino() {
     };
 }
 
-// Elforgatja a tetrominót 90 fokkal
+// Rotates the tetromino matrix 90 degrees clockwise
 function rotate(matrix) {
     const N = matrix.length - 1;
     const result = matrix.map((row, i) =>
@@ -41,7 +41,7 @@ function rotate(matrix) {
     return result;
 }
 
-// Ellenőrzi, hogy a tetrominó mozgása érvényes-e
+// Checks if the tetromino move is valid
 function isValidMove(matrix, cellRow, cellCol) {
     for (let row = 0; row < matrix.length; row++) {
         for (let col = 0; col < matrix[row].length; col++) {
@@ -58,7 +58,7 @@ function isValidMove(matrix, cellRow, cellCol) {
     return true;
 }
 
-// Elhelyezi a tetrominót a játéktéren
+// Places the tetromino on the playfield
 function placeTetromino() {
     for (let row = 0; row < tetromino.matrix.length; row++) {
         for (let col = 0; col < tetromino.matrix[row].length; col++) {
@@ -84,7 +84,7 @@ function placeTetromino() {
     tetromino = getNextTetromino();
 }
 
-// Megjeleníti a "Game Over" képernyőt
+// Displays the "Game Over" screen
 function showGameOver() {
     cancelAnimationFrame(rAF);
     gameOver = true;
@@ -99,7 +99,7 @@ function showGameOver() {
     context.fillText('GAME OVER!', canvas.width / 2, canvas.height / 2);
 }
 
-// Inicializálja a játékot
+// Initializes the game
 const canvas = document.getElementById('game');
 const context = canvas.getContext('2d');
 const grid = 32;
@@ -112,7 +112,7 @@ for (let row = -2; row < 20; row++) {
     }
 }
 
-// Tetrominók definíciója
+// Tetromino definitions
 const tetrominos = {
     'I': [
         [0, 0, 0, 0],
@@ -151,7 +151,7 @@ const tetrominos = {
     ]
 };
 
-// Tetrominók színei
+// Tetromino colors
 const colors = {
     'I': 'cyan',
     'O': 'yellow',
@@ -167,7 +167,7 @@ let tetromino = getNextTetromino();
 let rAF = null;
 let gameOver = false;
 
-// Játék fő ciklusa
+// Main game loop
 function loop() {
     rAF = requestAnimationFrame(loop);
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -200,7 +200,7 @@ function loop() {
     }
 }
 
-// Billentyűzet események kezelése
+// Handles keyboard events
 document.addEventListener('keydown', function (e) {
     if (gameOver) return;
     if (e.keyCode === 68 || e.keyCode === 65) {
@@ -228,10 +228,10 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
-// Új játék indítása gomb esemény kezelése
+// Handles the new game button click event
 document.getElementById('new-game-button').addEventListener('click', function() {
     location.reload();
 });
 
-// Játék indítása
+// Starts the game
 rAF = requestAnimationFrame(loop);

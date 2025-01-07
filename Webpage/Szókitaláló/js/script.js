@@ -1,53 +1,54 @@
-const wordText = document.querySelector(".word"), // Kiválasztja a szó megjelenítésére szolgáló elemet
-    hintText = document.querySelector(".hint span"), // Kiválasztja a tipp megjelenítésére szolgáló elemet
-    timeText = document.querySelector(".time b"), // Kiválasztja az idő megjelenítésére szolgáló elemet
-    inputField = document.querySelector("input"), // Kiválasztja a felhasználói bemenet mezőt
-    refreshBtn = document.querySelector(".refresh-word"), // Kiválasztja a frissítés gombot
-    checkBtn = document.querySelector(".check-word"); // Kiválasztja az ellenőrzés gombot
+const wordText = document.querySelector(".word"),
+    hintText = document.querySelector(".hint span"),
+    timeText = document.querySelector(".time b"),
+    inputField = document.querySelector("input"),
+    refreshBtn = document.querySelector(".refresh-word"),
+    checkBtn = document.querySelector(".check-word");
 
-let correctWord, timer; // Deklarálja a helyes szót és az időzítőt
+let correctWord, timer;
 
-const initTimer = maxTime => { // Időzítő inicializálása
-    clearInterval(timer); // Meglévő időzítő törlése
-    timer = setInterval(() => { // Új időzítő beállítása
-        if (maxTime > 0) { // Ha van még idő
-            maxTime--; // Csökkenti az időt
-            return timeText.innerText = maxTime; // Frissíti az idő megjelenítését
+const initTimer = maxTime => {
+    clearInterval(timer);
+    timer = setInterval(() => {
+        if (maxTime > 0) {
+            maxTime--;
+            timeText.innerText = maxTime;
+        } else {
+            timeText.innerText = `Time off! ${correctWord.toUpperCase()} was the correct word`;
+            initGame();
         }
-        timeText.innerText = `Time off! ${correctWord.toUpperCase()} was the correct word`; // Idő lejárt üzenet megjelenítése
-        initGame(); // Új játék indítása
-    }, 1000); // Időzítő 1 másodperces intervallummal
+    }, 1000);
 }
 
-const initGame = () => { // Játék inicializálása
-    initTimer(30); // Időzítő beállítása 30 másodpercre
-    let randomObj = words[Math.floor(Math.random() * words.length)]; // Véletlenszerű szó kiválasztása
-    let wordArray = randomObj.word.split(""); // Szó karakterekre bontása
-    for (let i = wordArray.length - 1; i > 0; i--) { // Karakterek összekeverése
-        let j = Math.floor(Math.random() * (i + 1)); // Véletlenszerű index kiválasztása
-        [wordArray[i], wordArray[j]] = [wordArray[j], wordArray[i]]; // Karakterek cseréje
+const initGame = () => {
+    initTimer(30);
+    let randomObj = words[Math.floor(Math.random() * words.length)];
+    let wordArray = randomObj.word.split("");
+    for (let i = wordArray.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [wordArray[i], wordArray[j]] = [wordArray[j], wordArray[i]];
     }
-    wordText.innerText = wordArray.join(""); // Összekevert szó megjelenítése
-    hintText.innerText = randomObj.hint; // Tipp megjelenítése
-    correctWord = randomObj.word.toLowerCase();; // Helyes szó mentése
-    inputField.value = ""; // Bemeneti mező ürítése
-    inputField.setAttribute("maxlength", correctWord.length); // Bemeneti mező maximális hosszának beállítása
+    wordText.innerText = wordArray.join("");
+    hintText.innerText = randomObj.hint;
+    correctWord = randomObj.word.toLowerCase();
+    inputField.value = "";
+    inputField.setAttribute("maxlength", correctWord.length);
 }
-initGame(); // Játék indítása
+initGame();
 
-const checkWord = () => { // Szó ellenőrzése
-    let userWord = inputField.value.toLowerCase(); // Felhasználói bemenet lekérése
-    if (!userWord) { // Ha nincs bemenet
-        timeText.innerText = "Please enter the word to check!"; // Üzenet megjelenítése
+const checkWord = () => {
+    let userWord = inputField.value.toLowerCase();
+    if (!userWord) {
+        timeText.innerText = "Please enter the word to check!";
         return;
     }
-    if (userWord !== correctWord) { // Ha a bemenet nem egyezik a helyes szóval
-        timeText.innerText = `Oops! ${userWord} is not a correct word`; // Hibaüzenet megjelenítése
+    if (userWord !== correctWord) {
+        timeText.innerText = `Oops! ${userWord} is not a correct word`;
         return;
     }
-    timeText.innerText = `Congrats! ${correctWord.toUpperCase()} is the correct word`; // Sikerüzenet megjelenítése
-    initGame(); // Új játék indítása
+    timeText.innerText = `Congrats! ${correctWord.toUpperCase()} is the correct word`;
+    initGame();
 }
 
-refreshBtn.addEventListener("click", initGame); // Frissítés gomb eseménykezelő hozzáadása
-checkBtn.addEventListener("click", checkWord); // Ellenőrzés gomb eseménykezelő hozzáadása
+refreshBtn.addEventListener("click", initGame);
+checkBtn.addEventListener("click", checkWord);
