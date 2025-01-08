@@ -1,4 +1,4 @@
-const WORDS = ["apple", "brave", "cherry", "dance", "eagle", "field", "grape", "heart", "house", 
+const WORDS = ["apple", "brave", "dance", "eagle", "field", "grape", "heart", "house", 
     "ideal", "joker", "lemon", "mango", "night", "olive", "peach", "queen", "river", 
     "shine", "tiger", "unity", "vivid", "world", "zebra", "berry", "cloud", "dream", 
     "flame", "grass", "humor", "input", "joyed", "koala", "lucky", "maple", "naval", 
@@ -7,12 +7,12 @@ const WORDS = ["apple", "brave", "cherry", "dance", "eagle", "field", "grape", "
     "jolly", "kneel", "laser", "milky", "novel", "ozone", "pearl", "quest", "royal", 
     "spark", "trace", "angel", "beach", "coral", "drink", "eagle", "flora", "ghost", 
     "hinge", "index", "joint", "knife", "light", "magic", "noble", "orbit", "panic", 
-    "quiet", "rapid", "scout", "trick", "unveil", "widen", "yield", "zebra", "actor", 
+    "quiet", "rapid", "scout", "trick", "widen", "yield", "zebra", "actor", 
     "beads", "clean", "dress", "exact", "frame", "glory", "haste", "inner", "judge", 
     "knead", "lunar", "motor", "nylon", "onion", "paper", "quick", "rocky", "share", 
     "trust", "unbox", "vapor", "weave", "xenon", "yield", "zebra", "alarm", "brave", 
     "crisp", "diver", "earth", "flora", "grasp", "honor", "ivory", "jewel", "kneel", 
-    "liver", "medal", "noble", "orbit"];
+    "liver", "medal", "noble", "orbit", "freak", "silly"];
 let targetWord; // The word to guess
 let currentRow; // The current row on the game board
 let currentCol; // The current column on the game board
